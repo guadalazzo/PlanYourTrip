@@ -118,17 +118,21 @@ This endpoint returns a dynamic list of products, based on the URL parameters pa
 ]
 ```
 
-Note: the images are hosted by Imgix's CDN. [Read their documentation](https://docs.imgix.com/apis/rendering/size) on how to control the size of the image.
+Note: the images are hosted by Imgix's CDN and are _not_ optimised. [Read their documentation](https://docs.imgix.com/apis/rendering/size) on how to optimise the images.
 
 ## General guidelines
 
 Here's a few things that we generally expect in the delivery:
 
-- A full implementation of the visual design and the functionality presented above.
-- As few external or 3rd-party libraries as possible.
+
+- A full implementation of the visual design [*] and the functionality presented above
+- No external or 3rd-party libraries, except for styling.
 - Use of semantic, accessible markup.
 - All scripting must be written in TypeScript.
 - For styling, you're welcome to use any tool you prefer.
+
+[*] Note: during the review of the assignment, we will prioritise the functional and technical parts over the visual implementation, so we advise you to do the same: instead of aiming for a pixel-perfect design, first make sure your application is working both functionally and technically.
+
 
 ## General information
 
