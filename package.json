@@ -10,12 +10,15 @@
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "concurrently": "6.2.0",
-    "json-server": "0.16.3",
+    "json-server": "^1.0.0-beta.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
     "typescript": "^5.3.3",
     "webpack-cli": "^5.1.4"
+  },
+  "overrides": {
+    "typescript": "^5.3.3"
   },
   "scripts": {
     "start": "concurrently \"react-scripts start\" \"json-server db/db.json --middlewares db/middleware.js --port 3001\"",
@@ -40,6 +43,8 @@
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
     "eslint": "^8.56.0",
-    "eslint-plugin-react": "^7.33.2"
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "prettier": "3.3.2"
   }
 }
