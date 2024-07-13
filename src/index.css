@@ -12,10 +12,10 @@ body {
     @apply bg-violet text-heading h-heading flex justify-center items-center text-white;
   }
   .filter {
-    @apply block m-4;
+    @apply block mx-4 my-2 sm:my-4;
   }
   .selector {
-    @apply relative border border-black rounded-lg bg-white;
+    @apply relative border border-black rounded-lg bg-white mt-2;
   }
   .selected_name {
     @apply p-4 cursor-pointer flex justify-between items-center w-full;

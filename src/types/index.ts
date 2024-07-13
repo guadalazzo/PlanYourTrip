@@ -4,9 +4,7 @@ export interface LocationResponse {
   [country: string]: City[];
 }
 
-export interface AvailableDatesResponse {
-  dates: string[];
-}
+export type AvailableDatesResponse = string[];
 
 export interface Product {
   product_url: string;

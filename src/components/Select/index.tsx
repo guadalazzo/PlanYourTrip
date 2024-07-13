@@ -4,7 +4,7 @@ import { City } from '../../types';
 interface SelectProps {
   type: string;
   placeholder: string;
-  onChange?: (_1: string | City, _2: string) => void;
+  onChange?: (_arg1: string | City, _arg2: string) => void;
   options?: string[] | City[];
 }
 const Select = ({ type, placeholder, options, onChange }: SelectProps) => {
@@ -49,15 +49,15 @@ const Select = ({ type, placeholder, options, onChange }: SelectProps) => {
 
   return (
     <li>
-      <label className="filter ">
+      <label className="filter font-medium">
         {type}
-        <div className="selector">
+        <div className="selector ">
           <button className="selected_name" onClick={toggleDropdown} aria-haspopup="listbox" aria-expanded={isOpen}>
             {selectedItem !== null ? getLabel(selectedItem) : placeholder}
             <span className={`transform transition-transform duration-200 ${isOpen ? '' : 'rotate-180'}`}>▲</span>
           </button>
           {isOpen && (
-            <ul className="options" role="listbox">
+            <ul className="options z-10" role="listbox">
               {options.map((option, index) => (
                 <li
                   className={`p-2 ${option === selectedItem ? 'bg-blue-100' : 'hover:bg-gray-100'} cursor-pointer`}
