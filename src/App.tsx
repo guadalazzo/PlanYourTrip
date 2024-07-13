@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Layout from './components/Layout';
-import Home from './pages/Home';
 import ErrorBoundary from './ErrorBoundary';
+
+const Home = React.lazy(() => import('./pages/Home'));
 
 const App: React.FC = () => (
   <ErrorBoundary>
     <Layout>
-      <Home />
+      <Suspense fallback={<div>Loading...</div>}>
+        // TODO: Add a loading component
+        <Home />
+      </Suspense>
     </Layout>
   </ErrorBoundary>
 );
