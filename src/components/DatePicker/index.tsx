@@ -33,6 +33,10 @@ const DatePicker = ({ active }: DatePickerProps) => {
     const dateObj = new Date(date);
     return daysOfWeek[dateObj.getDay()];
   };
+  const isLastDay = (dt: string) => {
+    const dateObj = new Date(dt);
+    return new Date(dateObj.getTime() + 86400000).getDate() === 1;
+  };
 
   const hideThisDate = (index: number) => {
     switch (true) {
@@ -55,18 +59,19 @@ const DatePicker = ({ active }: DatePickerProps) => {
       <ul className="grid grid-cols-4 xs:grid-cols-5 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 gap-2 mt-2">
         {dates &&
           dates.map((date, index) => (
-            <li
-              key={`${date}-${index}`}
-              className={`border border-black rounded-lg h-[72px] flex flex-col justify-center items-center ${hideThisDate(index)} `}
-            >
-              <button>
-                {/* TODO: add click functionality */}
-                {/* TODO: add END of month separator */}
+            <>
+              <li key={`${date}-${index}`} className={isLastDay(date) ? 'flex items-center' : ''}>
+                <button
+                  className={`w-full border border-black rounded-lg h-[72px] flex flex-col justify-center items-center ${hideThisDate(index)} `}
+                >
+                  {/* TODO: add click functionality */}
 
-                <p>{getDayOfTheWeek(date)}</p>
-                <h3 className="text-large">{getDay(date)}</h3>
-              </button>
-            </li>
+                  <p>{getDayOfTheWeek(date)}</p>
+                  <h3 className="text-large">{getDay(date)}</h3>
+                </button>
+                {isLastDay(date) && <li className="end-of-month"></li>}
+              </li>
+            </>
           ))}
       </ul>
     </div>

@@ -23,4 +23,7 @@ body {
   .options {
     @apply border-t bg-white shadow-lg absolute w-full mt-2;
   }
+  .end-of-month {
+    @apply border border-black w-[1px] h-[40px] ml-2;
+  }
 }
