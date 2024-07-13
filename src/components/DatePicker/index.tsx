@@ -36,10 +36,12 @@ const DatePicker = ({ active }: DatePickerProps) => {
 
   const hideThisDate = (index: number) => {
     switch (true) {
+      case index === 4:
+        return 'hidden xs:flex';
       case index === 5:
-        return 'hidden sm:flex  md:flex lg:flex';
+        return 'hidden sm:flex';
       case index === 6:
-        return 'hidden md:flex lg:flex';
+        return 'hidden md:flex';
       case index === 7:
         return 'hidden lg:flex';
       default:
@@ -50,7 +52,7 @@ const DatePicker = ({ active }: DatePickerProps) => {
   return (
     <div className={`filter ${active ? '' : 'opacity-10'}`}>
       <p className="font-medium">DATE</p>
-      <ul className="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 gap-2 mt-2">
+      <ul className="grid grid-cols-4 xs:grid-cols-5 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 gap-2 mt-2">
         {dates &&
           dates.map((date, index) => (
             <li
