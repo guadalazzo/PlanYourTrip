@@ -34,10 +34,10 @@ const Select = ({ type, placeholder, options, onChange }: SelectProps) => {
     // Disabled Selector
     return (
       <li>
-        <label className="opacity-10 block m-4">
+        <label className="opacity-10 filter">
           {type}
-          <div className="relative border border-black rounded-lg bg-white">
-            <p className="p-4 cursor-pointer flex justify-between items-center w-full">
+          <div className="selector">
+            <p className="selected_name">
               {placeholder}
               <span className="transform transition-transform duration-200 rotate-180">▲</span>
             </p>
@@ -49,20 +49,15 @@ const Select = ({ type, placeholder, options, onChange }: SelectProps) => {
 
   return (
     <li>
-      <label className="block m-4">
+      <label className="filter ">
         {type}
-        <div className="relative border border-black rounded-lg bg-white">
-          <button
-            className="p-4 cursor-pointer flex justify-between items-center w-full"
-            onClick={toggleDropdown}
-            aria-haspopup="listbox"
-            aria-expanded={isOpen}
-          >
+        <div className="selector">
+          <button className="selected_name" onClick={toggleDropdown} aria-haspopup="listbox" aria-expanded={isOpen}>
             {selectedItem !== null ? getLabel(selectedItem) : placeholder}
             <span className={`transform transition-transform duration-200 ${isOpen ? '' : 'rotate-180'}`}>▲</span>
           </button>
           {isOpen && (
-            <ul className="border-t bg-white shadow-lg absolute w-full z-9 mt-2" role="listbox">
+            <ul className="options" role="listbox">
               {options.map((option, index) => (
                 <li
                   className={`p-2 ${option === selectedItem ? 'bg-blue-100' : 'hover:bg-gray-100'} cursor-pointer`}

@@ -11,4 +11,16 @@ body {
   .header {
     @apply bg-violet text-heading h-heading flex justify-center items-center text-white;
   }
+  .filter {
+    @apply block m-4;
+  }
+  .selector {
+    @apply relative border border-black rounded-lg bg-white;
+  }
+  .selected_name {
+    @apply p-4 cursor-pointer flex justify-between items-center w-full;
+  }
+  .options {
+    @apply border-t bg-white shadow-lg absolute w-full mt-2;
+  }
 }
