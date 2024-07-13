@@ -8,7 +8,7 @@ const App: React.FC = () => (
   <ErrorBoundary>
     <Layout>
       <Suspense fallback={<div>Loading...</div>}>
-        // TODO: Add a loading component
+        {/* // TODO: Add a loading component */}
         <Home />
       </Suspense>
     </Layout>
