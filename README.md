@@ -1,8 +1,14 @@
 # Setup project
 
+Open the terminal in the repository location
+
+Install packages:
+
 `npm install`
 
 `npm run start`
+
+This loads react and json-server at the same time.
 
 # Code Style Guide
 
