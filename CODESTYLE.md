@@ -1,12 +1,44 @@
 # Code Style Guide
 
+- Use Typescript
+- Use TailwindCSS
+
+### File Naming
+
+- PascalCase for component and Pages folders.
+- camelCase for custom hooks and other non-component files
+
+### Folder structure
+
+- src/
+
+  - components
+
+  - hooks
+
+  - pages
+
+  - services
+
+  - store
+
+  - types
+
+  - utils
+
+  index.tsx
+
+  App.tsx
+
 # Todo
 
-- [ ] Add validations to push and commit
+- [ ] Add validations to push and commit (husky)
 
 - [x] Add api route to env file
 
 - [x] Add image optimization according to documentation
+
+- [x] Image onerror handling
 
 - [x] Persisted state in localstorage
 
