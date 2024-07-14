@@ -31,7 +31,7 @@ function Home() {
   }, [state.country, state.city, state.date]);
 
   return (
-    <section className="max-w-[720px] m-auto">
+    <section className="max-w-screen-lg m-auto">
       <CountryCityFilters dispatch={dispatch} />
       <DatePicker active={enableDatePicker} dispatch={dispatch} state={state} />
       <Products products={products} noAvailableProducts={noAvailableProducts} />

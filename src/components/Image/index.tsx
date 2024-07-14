@@ -49,6 +49,11 @@ const Image: React.FC<ImageProps> = (props) => {
       alt={props.alt || ''}
       src={getOptimizedSrc(props.src)}
       className="rounded-l-lg sm:rounded-none sm:rounded-t-lg"
+      onError={({ currentTarget }) => {
+        // if image don't load, fallback to the placeholders.
+        currentTarget.onerror = null;
+        currentTarget.src = isMobile ? '/placeholder-mobile.png' : '/placeholder-desktop.png';
+      }}
     />
   ) : (
     <img

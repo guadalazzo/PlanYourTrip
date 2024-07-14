@@ -4,7 +4,6 @@
 
 - Add validations to push and commit.(husky)
 - Add api route to env file
-- Add image optimization according to documentation
 - Save state in localstorage
 - Include i18n
 - react-router for having more routes

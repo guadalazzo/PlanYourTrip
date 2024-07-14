@@ -16,6 +16,8 @@ module.exports = {
         violet: '#4E2870',
         lila: '#9B51E0',
         stone: '#DDDDDD',
+        red: '#BB0000',
+        preprice: '#555555',
       },
       height: {
         heading: '168px',
