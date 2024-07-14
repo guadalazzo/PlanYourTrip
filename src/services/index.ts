@@ -1,5 +1,5 @@
 import { LocationResponse, AvailableDatesResponse, ProductResponse, ProductsPayload } from '../types';
-const API_URL = 'http://localhost:3001'; // TODO: Move this to env
+const API_URL = process.env.REACT_APP_API_URL;
 
 /**
  *  list of all locations

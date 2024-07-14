@@ -1,4 +1,4 @@
-export type City = [number, string];
+export type City = [number, string] | null;
 
 export interface LocationResponse {
   [country: string]: City[];

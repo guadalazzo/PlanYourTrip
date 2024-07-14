@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { City } from '../../types';
 
 interface SelectProps {
   type: string;
+  selectedValue?: string | City | null;
   placeholder: string;
   onChange?: (_arg1: string | City, _arg2: string) => void;
   options?: string[] | City[];
 }
-const Select = ({ type, placeholder, options, onChange }: SelectProps) => {
+const Select = ({ type, placeholder, options, onChange, selectedValue }: SelectProps) => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<string | City | null>(null);
 
@@ -19,9 +20,11 @@ const Select = ({ type, placeholder, options, onChange }: SelectProps) => {
     }
   };
 
-  const getLabel = (option: string | City) => {
-    // For city type get the value from the second parameter of the array
-    return type === 'CITY' ? option[1] : option;
+  const getLabel = (option: string | City | null) => {
+    if (option) {
+      // For city type get the value from the second parameter of the array
+      return type === 'CITY' ? option[1] : option;
+    }
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLLIElement>, option: string | City) => {
@@ -30,6 +33,15 @@ const Select = ({ type, placeholder, options, onChange }: SelectProps) => {
       setOpen(false);
     }
   };
+  useEffect(() => {
+    // Persisted state initialize here
+    if (selectedValue) {
+      setSelectedItem(selectedValue);
+    } else {
+      setSelectedItem(null);
+    }
+  }, [selectedValue]);
+
   if (!options?.length) {
     // Disabled Selector
     return (

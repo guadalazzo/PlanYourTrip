@@ -22,8 +22,17 @@ class ErrorBoundary extends Component<Props, State> {
 
   render() {
     if (this.state.hasError) {
-      // TODO: Improve this error screen
-      return <h1>Something went wrong.</h1>;
+      return (
+        <section className="w-screen h-screen m-auto bg-violet text-white middle-center text-heading">
+          <h3>Something went wrong...</h3>
+          <button
+            className="bg-white rounded-lg p-2 text-base text-black font-medium mt-4"
+            onClick={() => this.setState({ hasError: false })}
+          >
+            Retry
+          </button>
+        </section>
+      );
     }
 
     return this.props.children;

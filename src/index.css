@@ -47,4 +47,7 @@ body {
   .product-card {
     @apply border rounded-lg shadow-gray-300;
   }
+  .reset {
+    @apply absolute right-0 text-small bg-stone rounded-lg p-1 m-2;
+  }
 }
