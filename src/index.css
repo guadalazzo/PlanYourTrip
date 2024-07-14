@@ -26,4 +26,25 @@ body {
   .end-of-month {
     @apply border border-black w-[1px] h-[40px] ml-2;
   }
+  .middle-center {
+    @apply flex flex-col justify-center items-center;
+  }
+  .date-btn {
+    @apply w-full border border-black rounded-lg h-[72px] focus:bg-lila focus:text-white active:bg-lila active:text-white;
+  }
+  .date-btn.selected {
+    @apply bg-lila text-white;
+  }
+  .dates-cards {
+    @apply grid grid-cols-4 xs:grid-cols-5 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 gap-2 mt-2;
+  }
+  .products {
+    @apply p-4 border-t border-stone h-full;
+  }
+  .grid-products {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+  }
+  .product-card {
+    @apply border rounded-lg shadow-gray-300;
+  }
 }

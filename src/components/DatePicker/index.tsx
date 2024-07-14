@@ -1,11 +1,17 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getAvailableDates } from '../../services';
 import { AvailableDatesResponse } from '../../types';
+import { getDay, getDayOfTheWeek, isLastDay } from '../../utils';
+import { SET_DATE, ActionTypes, reducerState } from '../../store/reducer';
+
 interface DatePickerProps {
   active: boolean;
+  state: reducerState;
+  dispatch: React.Dispatch<ActionTypes>;
 }
-const DatePicker = ({ active }: DatePickerProps) => {
+const DatePicker = ({ active, dispatch, state }: DatePickerProps) => {
   const [dates, setDates] = useState<AvailableDatesResponse>([] as AvailableDatesResponse);
+  const [selectedDate, setSelectedDate] = useState<string>('');
 
   const loadAvailableDates = async () => {
     try {
@@ -13,7 +19,6 @@ const DatePicker = ({ active }: DatePickerProps) => {
       const availableDates = await getAvailableDates();
       if (availableDates) {
         setDates(availableDates);
-        console.log(availableDates);
       }
     } catch (e) {
       console.error('Failed to load Available Dates:', e);
@@ -23,21 +28,12 @@ const DatePicker = ({ active }: DatePickerProps) => {
     loadAvailableDates();
   }, []);
 
-  const getDay = (date: string) => {
-    const dateObj = new Date(date);
-    return dateObj.getDate();
-  };
-
-  const getDayOfTheWeek = (date: string) => {
-    const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-    const dateObj = new Date(date);
-    return daysOfWeek[dateObj.getDay()];
-  };
-  const isLastDay = (dt: string) => {
-    const dateObj = new Date(dt);
-    return new Date(dateObj.getTime() + 86400000).getDate() === 1;
-  };
-
+  useEffect(() => {
+    setSelectedDate(state.date);
+  }, [state.date]);
+  /**
+   * If date card is not fitting in the screen, hidde it.
+   */
   const hideThisDate = (index: number) => {
     switch (true) {
       case index === 4:
@@ -53,23 +49,31 @@ const DatePicker = ({ active }: DatePickerProps) => {
     }
   };
 
+  const handleBtnSelection = (dateValue: string) => {
+    // Store selected date
+    setSelectedDate(dateValue);
+    dispatch({ type: SET_DATE, payload: dateValue });
+  };
+
   return (
     <div className={`filter ${active ? '' : 'opacity-10'}`}>
-      <p className="font-medium">DATE</p>
-      <ul className="grid grid-cols-4 xs:grid-cols-5 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8 gap-2 mt-2">
+      <p key="main" className="font-medium">
+        DATE
+      </p>
+      <ul className="dates-cards">
         {dates &&
           dates.map((date, index) => (
             <>
-              <li key={`${date}-${index}`} className={isLastDay(date) ? 'flex items-center' : ''}>
+              <li key={`${date}-a`} className={isLastDay(date) ? 'flex items-center' : ''}>
                 <button
-                  className={`w-full border border-black rounded-lg h-[72px] flex flex-col justify-center items-center ${hideThisDate(index)} `}
+                  className={`date-btn middle-center ${hideThisDate(index)} ${selectedDate === date ? 'selected' : ''}`}
+                  disabled={!active}
+                  onClick={() => handleBtnSelection(date)}
                 >
-                  {/* TODO: add click functionality */}
-
                   <p>{getDayOfTheWeek(date)}</p>
                   <h3 className="text-large">{getDay(date)}</h3>
                 </button>
-                {isLastDay(date) && <li className="end-of-month"></li>}
+                {isLastDay(date) && <span className="end-of-month"></span>}
               </li>
             </>
           ))}

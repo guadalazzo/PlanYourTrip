@@ -1,4 +1,4 @@
-import { LocationResponse, AvailableDatesResponse, ProductResponse } from '../types';
+import { LocationResponse, AvailableDatesResponse, ProductResponse, ProductsPayload } from '../types';
 const API_URL = 'http://localhost:3001'; // TODO: Move this to env
 
 /**
@@ -29,7 +29,7 @@ export const getAvailableDates = async () => {
 /**
  *  list of products
  */
-export const getProducts = async ({ date, cityId }: { date: string; cityId: string }) => {
+export const getProducts = async ({ date, cityId }: ProductsPayload) => {
   try {
     const products = await fetch(`${API_URL}/products?date=${date}&city_id=${cityId}`).then(
       (res) => res.json() as Promise<ProductResponse>,

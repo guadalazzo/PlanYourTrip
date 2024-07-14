@@ -14,6 +14,8 @@ module.exports = {
     extend: {
       colors: {
         violet: '#4E2870',
+        lila: '#9B51E0',
+        stone: '#DDDDDD',
       },
       height: {
         heading: '168px',
@@ -21,11 +23,13 @@ module.exports = {
       fontSize: {
         small: '11px',
         medium: '12px',
+        price: '14px',
         regular: '16px',
+        title: '18px',
         large: '24px',
         heading: '32px',
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp')],
 };

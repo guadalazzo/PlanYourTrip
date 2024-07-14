@@ -18,3 +18,8 @@ export interface Product {
   available_dates: string[];
 }
 export type ProductResponse = Product[];
+
+export interface ProductsPayload {
+  date: string;
+  cityId: number;
+}
