@@ -49,7 +49,7 @@ const CountryCityFilters = ({ dispatch, state }: CountryCityFiltersProps) => {
   };
 
   return (
-    <ul role="listbox" className="grid grid-cols-1 sm:grid-cols-2">
+    <ul className="grid grid-cols-1 sm:grid-cols-2">
       <Select
         selectedValue={state.country}
         type="COUNTRY"

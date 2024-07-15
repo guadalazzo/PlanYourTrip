@@ -71,7 +71,7 @@ const DatePicker = ({ active, dispatch, state }: DatePickerProps) => {
                   onClick={() => handleBtnSelection(date)}
                 >
                   <p>{getDayOfTheWeek(date)}</p>
-                  <h3 className="text-large">{getDay(date)}</h3>
+                  <h2 className="text-large">{getDay(date)}</h2>
                 </button>
                 {isLastDay(date) && <span className="end-of-month"></span>}
               </li>

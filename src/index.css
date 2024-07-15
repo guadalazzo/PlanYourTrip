@@ -30,8 +30,9 @@ body {
     @apply flex flex-col justify-center items-center;
   }
   .date-btn {
-    @apply w-full border border-black rounded-lg h-[72px] focus:bg-lila focus:text-white active:bg-lila active:text-white;
+    @apply w-full border border-black rounded-lg h-[72px] hover:bg-lila hover:text-white focus:bg-lila focus:text-white active:bg-lila active:text-white;
   }
+
   .date-btn.selected {
     @apply bg-lila text-white;
   }
@@ -45,7 +46,7 @@ body {
     @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
   }
   .product-card {
-    @apply border rounded-lg shadow-gray-300;
+    @apply border rounded-lg shadow-gray-300 hover:shadow-sm hover:shadow-gray-500;
   }
   .reset {
     @apply absolute right-0 text-small bg-stone rounded-lg p-1 m-2;

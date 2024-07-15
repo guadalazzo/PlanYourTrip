@@ -60,11 +60,18 @@ const Select = ({ type, placeholder, options, onChange, selectedValue }: SelectP
   }
 
   return (
-    <li>
+    <li aria-labelledby={`select-${type}`}>
       <label className="filter font-medium">
         {type}
         <div className="selector ">
-          <button className="selected_name" onClick={toggleDropdown} aria-haspopup="listbox" aria-expanded={isOpen}>
+          <button
+            className="selected_name"
+            onClick={toggleDropdown}
+            aria-haspopup="listbox"
+            aria-expanded={isOpen}
+            aria-labelledby={`select-${type}`}
+            id={`select-${type}`}
+          >
             {selectedItem !== null ? getLabel(selectedItem) : placeholder}
             <span className={`transform transition-transform duration-200 ${isOpen ? '' : 'rotate-180'}`}>▲</span>
           </button>
@@ -78,6 +85,7 @@ const Select = ({ type, placeholder, options, onChange, selectedValue }: SelectP
                   onKeyDown={(event) => handleKeyDown(event, option)}
                   role="option"
                   aria-selected={option === selectedItem}
+                  aria-labelledby={`select-${type}`}
                   tabIndex={0}
                 >
                   <p className="font-semibold text-sm">{getLabel(option)}</p>

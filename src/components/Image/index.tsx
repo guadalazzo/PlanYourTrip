@@ -38,7 +38,7 @@ const Image: React.FC<ImageProps> = (props) => {
       // return isMobile ? `${src}&w=102&h=136` : `${src}&w=342&h=228`;
 
       // Optimized according to ratio https://docs.imgix.com/apis/rendering/size/aspect-ratio
-      return isMobile ? `${src}&ar=3:4&fit=crop` : `${src}&ar=3:2&fit=crop`;
+      return isMobile ? `${src}&ar=3:4` : `${src}&ar=3:2`;
     }
     return '';
   };
@@ -48,6 +48,7 @@ const Image: React.FC<ImageProps> = (props) => {
       {...props}
       alt={props.alt || ''}
       src={getOptimizedSrc(props.src)}
+      loading="lazy"
       className="rounded-l-lg sm:rounded-none sm:rounded-t-lg"
       onError={({ currentTarget }) => {
         // if image don't load, fallback to the placeholders.
