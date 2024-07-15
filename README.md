@@ -1,5 +1,7 @@
 ## Plan your trip
 
+The app is connected to the localhost json-server it needs a be running local to work
+
 [https://plantrip-web.netlify.app/](https://plantrip-web.netlify.app/)
 
 A product searcher, where users will select a Country, City and Date, and then a list of products will be shown based on those search options.
