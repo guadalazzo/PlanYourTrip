@@ -43,20 +43,23 @@ const Image: React.FC<ImageProps> = (props) => {
     return '';
   };
 
-  return inView ? (
-    <img
-      {...props}
-      alt={props.alt || ''}
-      src={getOptimizedSrc(props.src)}
-      loading="lazy"
-      className="rounded-l-lg sm:rounded-none sm:rounded-t-lg"
-      onError={({ currentTarget }) => {
-        // if image don't load, fallback to the placeholders.
-        currentTarget.onerror = null;
-        currentTarget.src = isMobile ? '/placeholder-mobile.png' : '/placeholder-desktop.png';
-      }}
-    />
-  ) : (
+  if (inView) {
+    return (
+      <img
+        {...props}
+        alt={props.alt || ''}
+        src={getOptimizedSrc(props.src)}
+        loading="lazy"
+        className="rounded-l-lg sm:rounded-none sm:rounded-t-lg"
+        onError={({ currentTarget }) => {
+          // if image don't load, fallback to the placeholders.
+          currentTarget.onerror = null;
+          currentTarget.src = isMobile ? '/placeholder-mobile.png' : '/placeholder-desktop.png';
+        }}
+      />
+    );
+  }
+  return (
     <img
       {...props}
       ref={placeholderRef}

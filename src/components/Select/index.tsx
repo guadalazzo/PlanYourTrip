@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import { City } from '../../types';
 
 interface SelectProps {
@@ -12,7 +12,8 @@ const Select = ({ type, placeholder, options, onChange, selectedValue }: SelectP
   const [isOpen, setOpen] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<string | City | null>(null);
 
-  const toggleDropdown = () => setOpen(!isOpen);
+  const toggleDropdown = useCallback(() => setOpen((prev) => !prev), []);
+
   const handleDropdownClick = async (value: string | City) => {
     setSelectedItem(value);
     if (onChange) {
@@ -20,12 +21,16 @@ const Select = ({ type, placeholder, options, onChange, selectedValue }: SelectP
     }
   };
 
-  const getLabel = (option: string | City | null) => {
-    if (option) {
-      // For city type get the value from the second parameter of the array
-      return type === 'CITY' ? option[1] : option;
-    }
-  };
+  const getLabel = useCallback(
+    (option: string | City | null) => {
+      if (option) {
+        // For city type get the value from the second parameter of the array
+        return type === 'CITY' ? option[1] : option;
+      }
+      return placeholder;
+    },
+    [type, placeholder],
+  );
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLLIElement>, option: string | City) => {
     if (event.key === 'Enter' || event.key === ' ') {
@@ -33,16 +38,15 @@ const Select = ({ type, placeholder, options, onChange, selectedValue }: SelectP
       setOpen(false);
     }
   };
+
   useEffect(() => {
     // Persisted state initialize here
-    if (selectedValue) {
-      setSelectedItem(selectedValue);
-    } else {
-      setSelectedItem(null);
-    }
+    setSelectedItem(selectedValue ?? null);
   }, [selectedValue]);
 
-  if (!options?.length) {
+  const renderedOptions = useMemo(() => options ?? [], [options]);
+
+  if (!renderedOptions?.length) {
     // Disabled Selector
     return (
       <li>
@@ -72,12 +76,12 @@ const Select = ({ type, placeholder, options, onChange, selectedValue }: SelectP
             aria-labelledby={`select-${type}`}
             id={`select-${type}`}
           >
-            {selectedItem !== null ? getLabel(selectedItem) : placeholder}
+            {getLabel(selectedItem)}
             <span className={`transform transition-transform duration-200 ${isOpen ? '' : 'rotate-180'}`}>▲</span>
           </button>
           {isOpen && (
             <ul className="options z-10" role="listbox">
-              {options.map((option, index) => (
+              {renderedOptions.map((option, index) => (
                 <li
                   className={`p-2 ${option === selectedItem ? 'bg-blue-100' : 'hover:bg-gray-100'} cursor-pointer`}
                   key={`${option}-${index}`}

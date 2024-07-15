@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import Select from '../Select';
 import { getLocations } from '../../services';
 import { LocationResponse, City } from '../../types';
@@ -40,13 +40,16 @@ const CountryCityFilters = ({ dispatch, state }: CountryCityFiltersProps) => {
     }
   }, [state.country, locations]);
 
-  const handleChange = (selectedValue: string | City, type: string) => {
-    if (type === 'COUNTRY' && typeof selectedValue === 'string') {
-      dispatch({ type: SET_COUNTRY, payload: selectedValue });
-    } else if (type === 'CITY' && typeof selectedValue !== 'string') {
-      dispatch({ type: SET_CITY, payload: selectedValue });
-    }
-  };
+  const handleChange = useCallback(
+    (selectedValue: string | City, type: string) => {
+      if (type === 'COUNTRY' && typeof selectedValue === 'string') {
+        dispatch({ type: SET_COUNTRY, payload: selectedValue });
+      } else if (type === 'CITY' && typeof selectedValue !== 'string') {
+        dispatch({ type: SET_CITY, payload: selectedValue });
+      }
+    },
+    [dispatch],
+  );
 
   return (
     <ul className="grid grid-cols-1 sm:grid-cols-2">

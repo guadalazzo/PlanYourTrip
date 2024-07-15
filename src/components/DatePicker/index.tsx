@@ -63,19 +63,17 @@ const DatePicker = ({ active, dispatch, state }: DatePickerProps) => {
       <ul className="dates-cards">
         {dates &&
           dates.map((date, index) => (
-            <>
-              <li key={`${date}-a`} className={isLastDay(date) ? 'flex items-center' : ''}>
-                <button
-                  className={`date-btn middle-center ${hideThisDate(index)} ${selectedDate === date ? 'selected' : ''}`}
-                  disabled={!active}
-                  onClick={() => handleBtnSelection(date)}
-                >
-                  <p>{getDayOfTheWeek(date)}</p>
-                  <h2 className="text-large">{getDay(date)}</h2>
-                </button>
-                {isLastDay(date) && <span className="end-of-month"></span>}
-              </li>
-            </>
+            <li key={`${date}-a`} className={isLastDay(date) ? 'flex items-center' : ''}>
+              <button
+                className={`date-btn middle-center ${hideThisDate(index)} ${selectedDate === date ? 'selected' : ''}`}
+                disabled={!active}
+                onClick={() => handleBtnSelection(date)}
+              >
+                <p>{getDayOfTheWeek(date)}</p>
+                <h2 className="text-large">{getDay(date)}</h2>
+              </button>
+              {isLastDay(date) && <span className="end-of-month"></span>}
+            </li>
           ))}
       </ul>
     </div>

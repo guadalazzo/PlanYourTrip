@@ -54,13 +54,13 @@ This loads react and json-server at the same time.
 
 - [x] Persisted state in localstorage
 
-- [ ] useCallback and useMemo
+- [x] useCallback and useMemo
 
 - [ ] Unit tests
 
 # If this app grows it needs
 
-- [ ] Adding metatags for SEO translated for each country
+- [ ] Adding metatags opengraph for SEO translated for each country
 
 - [ ] Including i18n for handling translations
 

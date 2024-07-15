@@ -35,9 +35,14 @@ function Home() {
     }
   }, [state.country, state.city, state.date]);
 
+  const handleResetClick = () => {
+    deleteLocalStorage(dispatch);
+    setProducts([]);
+  };
+
   return (
     <section className="max-w-screen-lg m-auto">
-      <button className="reset" onClick={() => deleteLocalStorage(dispatch)}>
+      <button className="reset" onClick={handleResetClick}>
         Reset filters
       </button>
       <CountryCityFilters dispatch={dispatch} state={state} />

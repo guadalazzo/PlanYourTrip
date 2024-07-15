@@ -20,5 +20,7 @@ export const formatPrice = (price: number) => {
 
 // This pre-discount is calculated based on the price and the discount percentage.
 export const calculatePreDiscount = (price: number, discount_percentage: number) => {
-  return price / discount_percentage + price;
+  const addedValue = (price * discount_percentage) / 100;
+
+  return price + addedValue;
 };
