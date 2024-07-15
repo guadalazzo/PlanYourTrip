@@ -28,7 +28,7 @@ jobs:
       matrix:
         node-version: [18.x]
     environment:
-      name: journeyenv
+      name: planyourtrip
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
