@@ -24,7 +24,7 @@
   "scripts": {
     "start": "concurrently \"react-scripts start\" \"json-server db/db.json --middlewares db/middleware.js --port 3001\"",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepare": "husky"
