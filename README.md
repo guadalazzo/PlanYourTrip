@@ -134,6 +134,8 @@ with filters open:
 
 # If this app grows it needs:
 
+- [ ] Connect to a real API URL
+
 - [ ] Adding metatags opengraph for SEO translated for each country
 
 - [ ] Including i18n for handling translations

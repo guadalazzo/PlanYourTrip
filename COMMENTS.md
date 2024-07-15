@@ -41,6 +41,8 @@ I added in the readme a list of all the things that could be implemented if this
 
 Probably also answered with previous question but
 
+Connect to a real API.
+
 I would create a component library with design system
 
 Separate the types per functionality
