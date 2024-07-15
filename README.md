@@ -78,6 +78,18 @@ This loads react and json-server at the same time.
 
   App.tsx
 
+# Performance test
+
+Test runned in https://plantrip-web.netlify.app/ incognito
+
+### Desktop
+
+![Lighthouse](public/perf-desk.png 'Lighthouse')
+
+### Mobile
+
+![Lighthouse](public/perf-mob.png 'Lighthouse')
+
 # Todo
 
 - [x] Add lint and test before push (husky)
@@ -93,6 +105,12 @@ This loads react and json-server at the same time.
 - [x] useCallback and useMemo
 
 - [x] Unit tests
+
+- [x] Accesibility
+
+- [x] Seo semantics and metatags
+
+- [x] Preloaded font
 
 # If this app grows it needs:
 

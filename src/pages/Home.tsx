@@ -41,7 +41,7 @@ function Home() {
   };
 
   return (
-    <section className="max-w-screen-lg m-auto">
+    <section className="max-w-screen-md m-auto">
       <button className="reset" onClick={handleResetClick}>
         Reset filters
       </button>

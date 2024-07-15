@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useViewportScreen } from '../../hooks/useViewportScreen';
 interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -35,13 +35,21 @@ const Image: React.FC<ImageProps> = (props) => {
   const getOptimizedSrc = (src: string) => {
     if (src) {
       // Example of Optimized width and height according to https://docs.imgix.com/apis/rendering/size/image-height
-      // return isMobile ? `${src}&w=102&h=136` : `${src}&w=342&h=228`;
+      // return isMobile ? `${src}&w=102&h=136` : `${src}&w=360&h=228`;
 
       // Optimized according to ratio https://docs.imgix.com/apis/rendering/size/aspect-ratio
       return isMobile ? `${src}&ar=3:4` : `${src}&ar=3:2`;
     }
     return '';
   };
+
+  const getWidth = useCallback(() => {
+    return isMobile ? '102' : '360';
+  }, [isMobile]);
+
+  const getHeight = useCallback(() => {
+    return isMobile ? '136' : '228';
+  }, [isMobile]);
 
   if (inView) {
     return (
@@ -50,7 +58,9 @@ const Image: React.FC<ImageProps> = (props) => {
         alt={props.alt || ''}
         src={getOptimizedSrc(props.src)}
         loading="lazy"
-        className="rounded-l-lg sm:rounded-none sm:rounded-t-lg"
+        width={getWidth()}
+        height={getHeight()}
+        className="rounded-l-lg sm:rounded-none sm:rounded-t-lg object-cover"
         onError={({ currentTarget }) => {
           // if image don't load, fallback to the placeholders.
           currentTarget.onerror = null;
@@ -63,6 +73,8 @@ const Image: React.FC<ImageProps> = (props) => {
     <img
       {...props}
       ref={placeholderRef}
+      width={getWidth()}
+      height={getHeight()}
       src={isMobile ? '/placeholder-mobile.png' : '/placeholder-desktop.png'}
       alt={props.alt || ''}
       className="rounded-l-lg sm:rounded-t-lg"
