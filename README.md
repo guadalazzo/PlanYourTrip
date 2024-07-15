@@ -4,6 +4,19 @@
 
 A product searcher, where users will select a Country, City and Date, and then a list of products will be shown based on those search options.
 
+## Table of Contents
+
+- [Mobile view](#mobile-view)
+- [Desktop view](#desktop)
+- [Setup project](#setup-project)
+- [Tests](#tests)
+- [Code Style Guide](#code-style-guide)
+  - [File Naming](#file-naming)
+  - [Folder structure](#folder-structure)
+- [Performance test](#performance-test)
+- [Todo](#todo)
+- [If this app grows it needs](#if-this-app-grows-it-needs)
+
 ### Mobile view:
 
 ![Main screen](public/initialscreen.png 'Home screen')
@@ -86,9 +99,14 @@ Test runned in https://plantrip-web.netlify.app/ incognito
 
 ![Lighthouse](public/perf-desk.png 'Lighthouse')
 
+with filters open:
+![Lighthouse](public//desktop-performance.png 'Lighthouse')
+
 ### Mobile
 
 ![Lighthouse](public/perf-mob.png 'Lighthouse')
+
+![Lighthouse](public/mobile-performance.png 'Lighthouse')
 
 # Todo
 
@@ -108,7 +126,7 @@ Test runned in https://plantrip-web.netlify.app/ incognito
 
 - [x] Accesibility
 
-- [x] Seo semantics and metatags
+- [x] SEO semantics and metatags
 
 - [x] Preloaded font
 
