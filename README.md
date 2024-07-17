@@ -1,7 +1,5 @@
 ## Plan your trip
 
-The app is connected to the localhost json-server it needs a be running local to work
-
 [https://plantrip-web.netlify.app/](https://plantrip-web.netlify.app/)
 
 A product searcher, where users will select a Country, City and Date, and then a list of products will be shown based on those search options.
@@ -55,7 +53,7 @@ Install packages:
 
 ## TESTS
 
-`npm run dev`
+`npm run test`
 
 This loads react and json-server at the same time.
 
@@ -135,6 +133,8 @@ with filters open:
 # If this app grows it needs:
 
 - [ ] Connect to a real API URL
+
+- [ ] Notification component for catch errors
 
 - [ ] Adding metatags opengraph for SEO translated for each country
 
