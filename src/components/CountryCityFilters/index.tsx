@@ -33,11 +33,7 @@ const CountryCityFilters = ({ dispatch, state }: CountryCityFiltersProps) => {
   }, []);
 
   useEffect(() => {
-    if (state.country) {
-      setCities(locations[state.country]);
-    } else {
-      setCities([]);
-    }
+    setCities(state.country ? locations[state.country] : []);
   }, [state.country, locations]);
 
   const handleChange = useCallback(

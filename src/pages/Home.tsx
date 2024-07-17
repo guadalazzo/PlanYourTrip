@@ -15,12 +15,8 @@ function Home() {
   const loadProducts = async ({ date, cityId }: ProductsPayload) => {
     setNoAvailableProducts(false);
     const resProducts = await getProducts({ date, cityId });
-    if (resProducts?.length) {
-      setProducts(resProducts);
-    } else {
-      setProducts([]);
-      setNoAvailableProducts(true);
-    }
+    setProducts(resProducts?.length ? resProducts : []);
+    setNoAvailableProducts(!resProducts?.length);
   };
 
   useEffect(() => {
@@ -28,11 +24,7 @@ function Home() {
       // get products
       loadProducts({ cityId: state.city[0], date: state.date });
     }
-    if (state.city && state.city.length > 0) {
-      setEnableDatePicker(true);
-    } else {
-      setEnableDatePicker(false);
-    }
+    setEnableDatePicker(!!state?.city?.length);
   }, [state.country, state.city, state.date]);
 
   const handleResetClick = () => {
