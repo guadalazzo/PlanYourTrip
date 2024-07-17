@@ -1,5 +1,6 @@
 import { LocationResponse, AvailableDatesResponse, ProductResponse, ProductsPayload } from '../types';
 const API_URL = process.env.REACT_APP_API_URL;
+console.log('API URL:', process.env.REACT_APP_API_URL);
 
 /**
  *  list of all locations
