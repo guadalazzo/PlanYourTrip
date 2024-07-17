@@ -33,13 +33,13 @@ A product searcher, where users will select a Country, City and Date, and then a
 
 City filter only enabled when a country is selected, this filter alignments change from mobile to desktop
 
-Added functionality to reset filters, since I'm persisting the state it in localStorage
+Added functionality to reset filters, since I'm persisting the state in localStorage
 
 Date filter only enabled when city is selected, end of the month filter has a separation
 
 Product cards only shown when all filters are selected
 
-if discount is present prev price and current price are shown
+if discount is present previous price and current price are shown
 
 when a new country is chosen the product list is removed
 
@@ -55,7 +55,7 @@ Install packages:
 
 ## TESTS
 
-`npm run dev`
+`npm run test`
 
 This loads react and json-server at the same time.
 
