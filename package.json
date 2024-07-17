@@ -22,7 +22,7 @@
     "typescript": "^5.3.3"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"json-server db/db.json --middlewares db/middleware.js --port 3001\"",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
