@@ -62,7 +62,7 @@ const Image: React.FC<ImageProps> = (props) => {
           loading="lazy"
           width={getWidth()}
           height={getHeight()}
-          className={`rounded-l-lg sm:rounded-none sm:rounded-t-lg object-cover max-w-[106px] sm:max-w-none max-h-[136px] sm:max-h-[228px] sm:w-full`}
+          className={`rounded-l-lg sm:rounded-none sm:rounded-t-lg object-cover max-w-cardmob sm:max-w-none max-h-cardmob sm:max-h-carddesk sm:w-full`}
           onError={({ currentTarget }) => {
             // if image don't load, fallback to the placeholders.
             currentTarget.onerror = null;
