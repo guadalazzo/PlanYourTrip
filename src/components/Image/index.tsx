@@ -38,7 +38,7 @@ const Image: React.FC<ImageProps> = (props) => {
       // return isMobile ? `${src}&w=102&h=136` : `${src}&w=360&h=228`;
 
       // Optimized according to ratio https://docs.imgix.com/apis/rendering/size/aspect-ratio
-      return isMobile ? `${src}&ar=3:4` : `${src}&ar=3:2`;
+      return isMobile ? `${src}&ar=3:4&w=102` : `${src}&ar=3:&w=360`;
     }
     return '';
   };
@@ -53,20 +53,23 @@ const Image: React.FC<ImageProps> = (props) => {
 
   if (inView) {
     return (
-      <img
-        {...props}
-        alt={props.alt || ''}
-        src={getOptimizedSrc(props.src)}
-        loading="lazy"
-        width={getWidth()}
-        height={getHeight()}
-        className="rounded-l-lg sm:rounded-none sm:rounded-t-lg object-cover"
-        onError={({ currentTarget }) => {
-          // if image don't load, fallback to the placeholders.
-          currentTarget.onerror = null;
-          currentTarget.src = isMobile ? '/placeholder-mobile.png' : '/placeholder-desktop.png';
-        }}
-      />
+      <picture>
+        <source media="(min-width: 640px)" srcSet={getOptimizedSrc(props.src)} sizes="(min-width: 640px) 102px" />
+        <img
+          {...props}
+          alt={props.alt || ''}
+          src={getOptimizedSrc(props.src)}
+          loading="lazy"
+          width={getWidth()}
+          height={getHeight()}
+          className={`rounded-l-lg sm:rounded-none sm:rounded-t-lg object-cover max-w-[106px] sm:max-w-none max-h-[136px] sm:max-h-[228px] sm:w-full`}
+          onError={({ currentTarget }) => {
+            // if image don't load, fallback to the placeholders.
+            currentTarget.onerror = null;
+            currentTarget.src = isMobile ? '/placeholder-mobile.png' : '/placeholder-desktop.png';
+          }}
+        />
+      </picture>
     );
   }
   return (
