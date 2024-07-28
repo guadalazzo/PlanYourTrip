@@ -14,11 +14,9 @@ const Select = ({ type, placeholder, options, onChange, selectedValue }: SelectP
 
   const toggleDropdown = useCallback(() => setOpen((prev) => !prev), []);
 
-  const handleDropdownClick = async (value: string | City) => {
+  const handleDropdownClick = (value: string | City) => {
     setSelectedItem(value);
-    if (onChange) {
-      onChange(value, type);
-    }
+    onChange?.(value, type);
   };
 
   const getLabel = useCallback(
@@ -40,7 +38,6 @@ const Select = ({ type, placeholder, options, onChange, selectedValue }: SelectP
   };
 
   useEffect(() => {
-    // Persisted state initialize here
     setSelectedItem(selectedValue ?? null);
   }, [selectedValue]);
 
@@ -69,10 +66,10 @@ const Select = ({ type, placeholder, options, onChange, selectedValue }: SelectP
         {type}
         <div className="selector ">
           <button
+            type="button"
             className="selected_name"
             onClick={toggleDropdown}
             aria-haspopup="listbox"
-            aria-expanded={isOpen}
             aria-labelledby={`select-${type}`}
             id={`select-${type}`}
           >
@@ -80,7 +77,7 @@ const Select = ({ type, placeholder, options, onChange, selectedValue }: SelectP
             <span className={`transform transition-transform duration-200 ${isOpen ? '' : 'rotate-180'}`}>▲</span>
           </button>
           {isOpen && (
-            <ul className="options z-10" role="listbox">
+            <ul className="options z-10" role="listbox" aria-labelledby={`select-${type}`}>
               {renderedOptions.map((option, index) => (
                 <li
                   className={`p-2 ${option === selectedItem ? 'bg-blue-100' : 'hover:bg-gray-100'} cursor-pointer`}
@@ -88,8 +85,7 @@ const Select = ({ type, placeholder, options, onChange, selectedValue }: SelectP
                   onClick={() => handleDropdownClick(option)}
                   onKeyDown={(event) => handleKeyDown(event, option)}
                   role="option"
-                  aria-selected={option === selectedItem}
-                  aria-labelledby={`select-${type}`}
+                  aria-selected={option === selectedItem ? 'true' : 'false'}
                   tabIndex={0}
                 >
                   <p className="font-semibold text-sm">{getLabel(option)}</p>
