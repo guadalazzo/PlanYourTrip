@@ -6,6 +6,7 @@ interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 
 const Image: React.FC<ImageProps> = (props) => {
   const [inView, setInView] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const placeholderRef = useRef<HTMLImageElement>(null);
   const { isMobile } = useViewportScreen();
 
@@ -50,37 +51,27 @@ const Image: React.FC<ImageProps> = (props) => {
     [isMobile],
   );
 
-  const getWidth = useCallback(() => {
-    return isMobile ? '102' : '360';
-  }, [isMobile]);
+  const width = isMobile ? 102 : 360; // Preset image Width
+  const height = isMobile ? 136 : 228; // Preset image Height
+  const fallbackSrc = isMobile ? '/placeholder-mobile.png' : '/placeholder-desktop.png';
 
-  const getHeight = useCallback(() => {
-    return isMobile ? '136' : '228';
-  }, [isMobile]);
+  const handleError = () => {
+    setImageError(true);
+  };
 
-  const handleError = useCallback(
-    (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
-      const currentTarget = event.currentTarget;
-
-      // if image don't load, fallback to the placeholders.
-      currentTarget.onerror = null;
-      currentTarget.src = isMobile ? '/placeholder-mobile.png' : '/placeholder-desktop.png';
-    },
-    [isMobile],
-  );
-
-  if (inView) {
+  if (inView && !imageError) {
+    // if Image don't load correctly, do fallback
     return (
       <picture>
-        <source media="(min-width: 640px)" srcSet={`${props.src}&ar=3:2&w=360`} sizes="(min-width: 640px) 102px" />
-        <source media="(max-width: 639px)" srcSet={`${props.src}&ar=3:4&w=102`} />
+        <source media="(min-width: 640px)" srcSet={getOptimizedSrc(props.src)} />
+        <source media="(max-width: 639px)" srcSet={getOptimizedSrc(props.src)} />
         <img
           {...props}
           alt={props.alt || ''}
           loading="lazy"
           src={getOptimizedSrc(props.src)}
-          width={getWidth()}
-          height={getHeight()}
+          width={width}
+          height={height}
           className={`rounded-l-lg sm:rounded-none sm:rounded-t-lg object-cover max-w-cardmob sm:max-w-none max-h-cardmob sm:max-h-carddesk sm:w-full`}
           onError={handleError}
         />
@@ -91,9 +82,9 @@ const Image: React.FC<ImageProps> = (props) => {
     <img
       {...props}
       ref={placeholderRef}
-      width={getWidth()}
-      height={getHeight()}
-      src={isMobile ? '/placeholder-mobile.png' : '/placeholder-desktop.png'}
+      width={width}
+      height={height}
+      src={fallbackSrc}
       alt={props.alt || ''}
       className="rounded-l-lg sm:rounded-t-lg"
       onError={handleError}
