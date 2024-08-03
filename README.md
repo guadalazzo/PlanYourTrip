@@ -162,4 +162,4 @@ with filters open:
 
 - The font I preloaded as=style => when it should be as=font
 
-- I should have added some kind of funcitonality to see the dates that are hidden in mobile
+- I should have added some kind of funcionality to see the dates that are hidden in mobile
