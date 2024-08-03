@@ -155,3 +155,11 @@ with filters open:
 - [ ] More test coverage
 
 - [ ] Configure pipeline for CI/CD
+
+# Things I've found out I've could do better later
+
+- Picture tag with source (added in this branch)
+
+- The font I preloaded as=style => when it should be as=font
+
+- I should have added some kind of funcitonality to see the dates that are hidden in mobile
