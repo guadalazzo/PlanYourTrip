@@ -17,6 +17,7 @@ export const useViewportScreen = (): ScreenType => {
     window.addEventListener('resize', handleWindowSizeChange);
 
     return () => {
+      // On unmount
       window.removeEventListener('resize', handleWindowSizeChange);
     };
   }, []);

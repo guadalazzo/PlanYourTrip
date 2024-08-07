@@ -51,6 +51,8 @@ Install packages:
 
 `npm run start`
 
+create a .env file in the root of the project using .env.example as a reference.
+
 ## TESTS
 
 `npm run test`
@@ -136,13 +138,13 @@ with filters open:
 
 - [ ] Notification component for catch errors
 
+- [ ] Connecting the error boundary to some tool for logging errors
+
 - [ ] Adding metatags opengraph for SEO translated for each country
 
 - [ ] Including i18n for handling translations
 
 - [ ] react-router if it has more routes
-
-- [ ] Connecting the error boundary to some tool for logging errors
 
 - [ ] e2e tests
 
@@ -153,3 +155,11 @@ with filters open:
 - [ ] More test coverage
 
 - [ ] Configure pipeline for CI/CD
+
+# Things I've found out I've could do better later
+
+- Picture tag with source (added in this branch)
+
+- The font I preloaded as=style => when it should be as=font
+
+- I should have added some kind of funcionality to see the dates that are hidden in mobile
