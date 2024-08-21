@@ -22,6 +22,14 @@ module.exports = {
       height: {
         heading: '168px',
       },
+      maxHeight: {
+        carddesk: '228px',
+        cardmob: '136px',
+      },
+      maxWidth: {
+        carddesk: '360px',
+        cardmob: '102px',
+      },
       fontSize: {
         small: '11px',
         medium: '12px',

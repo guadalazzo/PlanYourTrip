@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer, useState, useCallback } from 'react';
 import { reducer, initialState, deleteLocalStorage } from '../store/reducer';
 import CountryCityFilters from '../components/CountryCityFilters';
 import DatePicker from '../components/DatePicker';
@@ -12,12 +12,12 @@ function Home() {
   const [noAvailableProducts, setNoAvailableProducts] = useState<boolean>(false);
   const [enableDatePicker, setEnableDatePicker] = useState<boolean>(false);
 
-  const loadProducts = async ({ date, cityId }: ProductsPayload) => {
+  const loadProducts = useCallback(async ({ date, cityId }: ProductsPayload) => {
     setNoAvailableProducts(false);
     const resProducts = await getProducts({ date, cityId });
     setProducts(resProducts?.length ? resProducts : []);
     setNoAvailableProducts(!resProducts?.length);
-  };
+  }, []);
 
   useEffect(() => {
     if (state.country && state.city && state.date) {
@@ -25,7 +25,7 @@ function Home() {
       loadProducts({ cityId: state.city[0], date: state.date });
     }
     setEnableDatePicker(!!state?.city?.length);
-  }, [state.country, state.city, state.date]);
+  }, [state.country, state.city, state.date, loadProducts]);
 
   const handleResetClick = () => {
     deleteLocalStorage(dispatch);

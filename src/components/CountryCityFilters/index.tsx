@@ -15,7 +15,7 @@ const CountryCityFilters = ({ dispatch, state }: CountryCityFiltersProps) => {
   const [cities, setCities] = useState<City[]>([] as City[]);
 
   // Load Locations updates local state
-  const loadLocations = async () => {
+  const loadLocations = useCallback(async () => {
     try {
       // Get locations list
       const locationsResponse = await getLocations();
@@ -26,11 +26,11 @@ const CountryCityFilters = ({ dispatch, state }: CountryCityFiltersProps) => {
     } catch (e) {
       console.error('Failed to load Locations:', e);
     }
-  };
+  }, []);
 
   useEffect(() => {
     loadLocations();
-  }, []);
+  }, [loadLocations]);
 
   useEffect(() => {
     setCities(state.country ? locations[state.country] : []);

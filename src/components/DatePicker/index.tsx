@@ -32,7 +32,7 @@ const DatePicker = ({ active, dispatch, state }: DatePickerProps) => {
     setSelectedDate(state.date);
   }, [state.date]);
   /**
-   * If date card is not fitting in the screen, hidde it.
+   * If date card is not fitting in the screen, hide it.
    */
   const hideThisDate = (index: number) => {
     switch (true) {
