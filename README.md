@@ -158,7 +158,7 @@ with filters open:
 
 # Things I've found out I've could do better later
 
-- Picture tag with source (added in this branch)
+- Picture tag with source 
 
 - The font I preloaded as=style => when it should be as=font
 
