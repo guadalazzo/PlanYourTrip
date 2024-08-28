@@ -1,18 +1,10 @@
 import { Product } from '../../types';
 import Image from '../Image';
 import { formatPrice, calculatePreDiscount } from '../../utils';
-import { useEffect, useState } from 'react';
 
 const ProductCard = ({ product_url, image, id, title, price, discount_percentage, summary }: Product) => {
-  const [hasDiscount, setHasDiscount] = useState<boolean>(false);
-  const [preDiscount, setPreDiscount] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (discount_percentage > 0) {
-      setHasDiscount(true);
-      setPreDiscount(calculatePreDiscount(price, discount_percentage));
-    }
-  }, [discount_percentage, price]); // on mount
+  const hasDiscount = discount_percentage > 0;
+  const preDiscount = hasDiscount ? calculatePreDiscount(price, discount_percentage) : null;
 
   return (
     <article
